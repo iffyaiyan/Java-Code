@@ -1,0 +1,64 @@
+import java.util.*;
+
+public class Main {
+
+    // ~~~~~~~~~~~~~~~~~User Section~~~~~~~~~~~~~~~~
+    public static int minTotalDistance(int[][] grid) {
+        
+        // Get x cord rowwise travel
+        ArrayList<Integer> xcord = new ArrayList<>();
+        for (int r = 0; r<grid.length; r++){
+            for (int c = 0; c<grid[0].length; c++){
+                if(grid[r][c] == 1){
+                    xcord.add(r);
+                }
+            }
+        }
+        
+        // Get y cord colmwise travel
+        ArrayList<Integer> ycord = new ArrayList<>();
+        for (int c = 0; c<grid[0].length; c++){
+            for (int r = 0; r<grid.length; r++){
+                if(grid[r][c] == 1){
+                    ycord.add(c);
+                }
+            }
+        }
+        
+        // Get median
+        int xmed = xcord.get(xcord.size()/2);
+        int ymed = ycord.get(ycord.size()/2);
+        
+        // Calculate Distance
+        int dist = 0;
+        for (int val: xcord){
+            dist += Math.abs(xmed-val);
+        }
+        
+        for (int val: ycord){
+            dist += Math.abs(ymed-val);
+        }
+        
+        // return distance
+        return dist;
+    }
+
+    // ~~~~~~~~~~~~~~~Input Management~~~~~~~~~~~~~~
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int m = scn.nextInt();
+
+
+        int[][] grid = new int[n][m];
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                grid[i][j] = scn.nextInt();
+            }
+        }
+
+        int dist = minTotalDistance(grid);
+        System.out.println(dist);
+    }
+}

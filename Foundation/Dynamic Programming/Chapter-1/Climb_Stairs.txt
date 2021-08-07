@@ -68,6 +68,34 @@ public class Main {
         }
         
         return dp[n];
-    }
+    }	
+
+
+   // Tabulation method following Rajnish Sir Trick and in the main we need to pass the dp array
+    // public static int CountPath_T(int n, int[] dp){
+        
+    //     dp[0] = 1;
+        
+    //     int N = n;
+        
+    //     for (n = 1; n <= N; n++){
+            
+    //         if (n == 1){
+    //           dp[n] = dp[n-1];
+    //         } else if (n == 2){
+    //             dp[n] = dp[n-1] + dp[n-2];
+    //         } else {
+    //             dp[n] = dp[n-1] + dp[n-2] + dp[n-3];
+    //         }
+            
+    //     }
+    //     return dp[N];
+        
+    // }
+	
+
+
+
+
 
 }

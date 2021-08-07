@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+
+
+class Solution
+{
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    
+    public static class vPair {
+        Node node = null;
+        int hl = 0;
+        
+        vPair(Node node, int hl){
+            
+            this.node = node;
+            this.hl = hl;
+            
+        }
+    }
+    
+    public static void width (Node root, int hl, int ans[]){
+        
+        if (root == null) return;
+        
+        ans[0] = Math.min(hl, ans[0]);
+        ans[1] = Math.max(hl, ans[1]);
+        
+        width(root.left, hl-1, ans);
+        width(root.right, hl+1, ans);
+        
+    }
+    
+    static ArrayList<Integer> topView(Node root)
+    {
+        // add your code
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        if (root == null) return ans;
+        
+        int[] minMax = new int[2];
+        
+        width(root, 0, minMax);
+        
+        int len = minMax[1] - minMax[0] + 1;
+        
+        for (int i = 0; i<len; i++) ans.add(null);
+        
+        LinkedList<vPair> que = new LinkedList<>();
+        que.addLast(new vPair(root, Math.abs(minMax[0])));
+        
+        while (que.size() != 0){
+            
+            int size = que.size();
+            
+            while (size-- > 0){
+                vPair rp = que.removeFirst();
+                
+                Node node = rp.node;
+                int hl = rp.hl;
+                
+                if (ans.get(hl) == null) ans.set(hl, node.data);
+                
+                if(node.left != null) que.addLast(new vPair(node.left, hl-1));
+                if(node.right != null) que.addLast(new vPair(node.right, hl+1));
+            }
+            
+        }
+        
+        return ans;
+        
+    }
+}

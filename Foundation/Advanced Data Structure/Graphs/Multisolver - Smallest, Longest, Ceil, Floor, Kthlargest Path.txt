@@ -1,3 +1,9 @@
+
+
+
+
+
+
 import java.io.*;
 import java.util.*;
 
@@ -112,12 +118,16 @@ public class Main {
        }
        
        visited[src] = true;
-       for (Edge e: graph[src]){
-           if (visited[e.nbr] == false){
-               multisolver(graph, e.nbr, dest, visited, citeris, k, psf+e.nbr, wsf+e.wt);
-           }
-       }
-       visited[src] = false;
+       for (Edge e : graph[src]) {
+  
+            // If neighbour is not visited
+            if (visited[e.nbr] == false) {
+                multisolver(graph, e.nbr, dest, visited, criteria, k, psf + e.nbr, wsf + e.wt);
+            }
+        }
+  
+        // Mark src as unvisited
+        visited[src] = false;
        
  
    }

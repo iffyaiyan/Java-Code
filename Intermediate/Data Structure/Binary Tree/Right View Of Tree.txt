@@ -1,0 +1,37 @@
+class Solution{
+    //Function to return list containing elements of right view of binary tree.
+    ArrayList<Integer> rightView(Node node) {
+        //add code here.
+        LinkedList<Node> que = new LinkedList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+        que.addLast(node);
+        
+        if(node == null){
+            return ans;
+        }
+        
+        while (que.size() != 0){
+            int size = que.size();
+            ans.add(que.getFirst().data);
+            
+            while(size-- > 0){
+                
+                Node temp = que.removeFirst();
+                
+                if(temp.right != null){
+                    que.addLast(temp.right);
+                }
+                
+                if (temp.left != null){
+                    que.addLast(temp.left);
+                }
+                
+                
+            }
+        }
+        
+        return ans;
+        
+    }
+}
+

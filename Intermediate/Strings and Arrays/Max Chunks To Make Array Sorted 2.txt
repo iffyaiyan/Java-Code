@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Main {
+
+    // ~~~~~~~~~~~~~~~User Section~~~~~~~~~~~~~~~~~
+    public static int maxChunksToSorted2(int[] arr) {
+        // write your code here
+        
+        int[] right = new int[arr.length+1];
+        int min = Integer.MAX_VALUE;
+        right[arr.length] = min;
+        for (int i = arr.length-1; i>=0; i--){
+            min = Math.min(min, arr[i]);
+            right[i] = min;
+        }
+        
+        int count = 0;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i<arr.length; i++){
+            max = Math.max(max, arr[i]);
+            if(max<right[i+1]){
+                count++;
+            }
+        }
+        return count;
+        
+    }
+
+    // ~~~~~~~~~~~~~~~Input Management~~~~~~~~~~~~~~~~~
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int[] arr = new int[n];
+
+        for(int i = 0; i < n; i++) {
+            arr[i] = scn.nextInt();
+        }
+
+        int res = maxChunksToSorted2(arr);
+        System.out.println(res);
+    }
+}
